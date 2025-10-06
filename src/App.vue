@@ -4,7 +4,7 @@
 </template>
 <script setup>
 import headerBar from '@/components/headerBar.vue'
-import '@/style/theme.scss'
+import './style/theme.scss'
 </script>
 
 <style scoped></style>

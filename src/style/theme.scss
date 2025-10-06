@@ -8,13 +8,13 @@
   color: var(--color-text-main);
   background-color: var(--color-bg-main);
 
-  --color-bg-main: #242424;
-  --color-text-main: rgba(255, 255, 255, 0.87);
+  --color-bg-main: #d7d7d7;
+  --color-text-main: black;
   --color-primary: #3fa7ff;
   --color-disabled-bg: #444c56;
   --color-disabled-text: #b0bec5;
   --color-border: #ddd;
-  --color-red: rgb(184, 117, 117);
+  --color-red: #bf0019;
   --color-header-bg: rgba(0, 0, 0, 0.8);
   --color-black: black;
   --color-white: white;
@@ -101,8 +101,4 @@ button {
     border: none;
     cursor: not-allowed;
   }
-}
-.loading {
-  text-align: center;
-  padding-top: 4vh;
 }

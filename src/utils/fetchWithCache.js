@@ -1,7 +1,7 @@
 import { useLocalStorage } from '@vueuse/core'
+import { EXPIRATION_TIME_MS } from './constants.js'
 
-export async function fetchWithCache(key, url, ttlMs = 3600000) {
-  console.log('hola')
+export async function fetchWithCache(key, url, ttlMs = EXPIRATION_TIME_MS) {
   // Creamos un ref reactivo que se sincroniza con localStorage
   const cache = useLocalStorage(key, { value: null, timestamp: 0 })
 
