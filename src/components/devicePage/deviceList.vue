@@ -21,7 +21,7 @@ defineProps({
   gap: 24px;
   padding: 20px;
   overflow-y: auto;
-  height: auto;
+  height: 73vh;
   width: 97vw;
   justify-items: center;
 }

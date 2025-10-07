@@ -12,6 +12,7 @@ export function useDevicesDetails(id) {
     try {
       product.value = await getDevicesDetail(id)
     } catch (err) {
+      console.log(err)
       error.value = 'No se pudo cargar el detalle del dispositivo'
     } finally {
       loading.value = false

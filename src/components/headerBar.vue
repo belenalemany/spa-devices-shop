@@ -29,7 +29,7 @@ const store = useCartStore()
       text-align: center;
       position: absolute;
       top: 1%;
-      right: 2%;
+      right: 1%;
       z-index: 1;
       background: var(--color-red);
       color: var(--color-white);
