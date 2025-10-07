@@ -11,6 +11,7 @@
   --color-bg-main: #d7d7d7;
   --color-text-main: black;
   --color-primary: #3fa7ff;
+  --color-secondary: #3fa7ff7d;
   --color-disabled-bg: #444c56;
   --color-disabled-text: #b0bec5;
   --color-border: #ddd;
@@ -69,12 +70,10 @@ h4 {
   line-height: 1.25;
 }
 
-input {
-  padding: 0.625rem;
-  border: 0.125rem solid --color-border;
-  height: 40%;
+a {
+  color: var(--color-black);
+  text-decoration: none;
 }
-
 button {
   border: 1px solid --color-primary;
   background: transparent;
@@ -101,4 +100,13 @@ button {
     border: none;
     cursor: not-allowed;
   }
+}
+.center {
+  @include d-flex(column, center, center, 12px);
+  width: 100%;
+  height: 100%;
+}
+.loading {
+  width: 60px;
+  height: auto;
 }

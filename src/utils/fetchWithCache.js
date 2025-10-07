@@ -23,8 +23,6 @@ export async function fetchWithCache(key, url, ttlMs = EXPIRATION_TIME_MS) {
     value: data,
     timestamp: Date.now(),
   }
-  console.log('Cache actualizado:')
-  console.log(cache.value)
 
   return data
 }

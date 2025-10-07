@@ -17,18 +17,3 @@ import loadingImg from '@/assets/loading.gif'
 
 const { devices, loading, error } = useDevices()
 </script>
-
-<style scoped lang="scss">
-@use '../style/mixins.scss' as *;
-
-.center {
-  @include d-flex(column, center, center, 12px);
-  @include d-flex(column, center, center, 12px);
-  width: 100%;
-  height: 100%;
-}
-.loading {
-  width: 60px;
-  height: auto;
-}
-</style>

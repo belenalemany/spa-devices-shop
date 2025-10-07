@@ -1,13 +1,15 @@
 <template>
-  <section class="device-card">
-    <img :src="device.imgUrl" :alt="device.model" class="device-card-image" />
-    <div class="device-card-info">
-      <p class="device-card-name">{{ device.brand }} {{ device.model }}</p>
-      <p class="device-card-info-price" v-if="device.price">
-        {{ device.price }} {{ DEFAULT_CURRENCY }}
-      </p>
-    </div>
-  </section>
+  <router-link :to="`/device/${device.id}`" class="no-underline">
+    <section class="device-card">
+      <img :src="device.imgUrl" :alt="device.model" class="device-card-image" />
+      <div class="device-card-info">
+        <p class="device-card-name">{{ device.brand }} {{ device.model }}</p>
+        <p class="device-card-info-price" v-if="device.price">
+          {{ device.price }} {{ DEFAULT_CURRENCY }}
+        </p>
+      </div>
+    </section>
+  </router-link>
 </template>
 <script setup>
 import { DEFAULT_CURRENCY } from '@/utils/constants.js'
