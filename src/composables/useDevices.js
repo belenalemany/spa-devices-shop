@@ -1,11 +1,13 @@
 import { ref, onMounted } from 'vue'
 import { getDevices } from '@/services/getDevices.js'
+import { useBreadcrumbStore } from '@/stores/breadcrumbStore'
 
 export function useDevices() {
   const devices = ref([])
   const allDevices = ref([])
   const loading = ref(false)
   const error = ref(null)
+  const breadcrumbStore = useBreadcrumbStore()
 
   const fetchDevices = async () => {
     loading.value = true
@@ -13,6 +15,7 @@ export function useDevices() {
     try {
       devices.value = await getDevices()
       allDevices.value = devices.value
+      breadcrumbStore.clearBreadcrumbs()
     } catch (err) {
       console.log(err)
       error.value = 'No se pudieron cargar los dispositivos'
@@ -22,7 +25,6 @@ export function useDevices() {
   }
 
   const filterDevices = (searchName) => {
-    console.log(searchName)
     if (!searchName) {
       devices.value = allDevices.value
       return
@@ -33,7 +35,6 @@ export function useDevices() {
         device.model.toLowerCase().includes(searchName.toLowerCase())
       )
     })
-    console.log(filteredDevices)
     devices.value = filteredDevices
   }
 

@@ -1,8 +1,11 @@
 <template>
   <header class="header">
-    <h3>📱 SPA-DEVICES-SHOP</h3>
+    <span class="header-title">
+      <h3 @click="router.push('/')" class="header-title-breadcrumb">📱 SPA-DEVICES-SHOP</h3>
+      <h3 v-if="breadcrumbStore.breadcrumbs">/ {{ breadcrumbStore.breadcrumbs }}</h3>
+    </span>
     <div class="header-cart">
-      <p class="header-cart-count" v-if="store.itemsOnCart > 0">{{ store.itemsOnCart }}</p>
+      <p class="header-cart-count" v-if="cartStore.itemsOnCart > 0">{{ cartStore.itemsOnCart }}</p>
       <img :src="cartImg" alt="cart" class="header-cart-icon" />
     </div>
   </header>
@@ -10,8 +13,12 @@
 
 <script setup>
 import cartImg from '@/assets/cart.png'
+import router from '@/router'
 import { useCartStore } from '@/stores/cartStore.js'
-const store = useCartStore()
+import { useBreadcrumbStore } from '@/stores/breadcrumbStore'
+
+const cartStore = useCartStore()
+const breadcrumbStore = useBreadcrumbStore()
 </script>
 
 <style scoped lang="scss">
@@ -20,6 +27,12 @@ const store = useCartStore()
 .header {
   @include d-flex(row, space-between, center, 0px);
   padding: 30px;
+  &-title {
+    display: inline-flex;
+    &-breadcrumb {
+      cursor: pointer;
+    }
+  }
   &-cart {
     &-count {
       display: inline-block;
