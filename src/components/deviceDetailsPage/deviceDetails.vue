@@ -23,8 +23,8 @@
         </table>
         <div class="details-options">
           <span>Color:</span>
-          <select v-model="color">
-            <option v-for="color in product?.options?.colors" :key="color.code" :value="color">
+          <select v-model="color" @change="color = $event.target.value">
+            <option v-for="color in product?.options?.colors" :key="color.code" :value="color.code">
               {{ color.name }}
             </option>
           </select>
@@ -35,20 +35,28 @@
             <option
               v-for="storage in product?.options?.storages"
               :key="storage.code"
-              :value="storage"
+              :value="storage.code"
             >
               {{ storage.name }}
             </option>
           </select>
         </div>
+        <div class="details-btn-cart">
+          <button :disabled="!color || !storage || cartStore.loadingCart" @click="addToCart()">
+            {{ cartStore.loadingCart ? 'Added...' : 'Add to cart' }}
+          </button>
+        </div>
       </section>
     </div>
   </main>
 </template>
+
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { DEFAULT_CURRENCY, DEFAULT_WEIGHT, UNKNOWN } from '@/utils/constants.js'
-defineProps({
+import { useCartStore } from '@/stores/cartStore.js'
+const cartStore = useCartStore()
+const props = defineProps({
   product: {
     type: Object,
     required: true,
@@ -69,7 +77,20 @@ const fields = [
 ]
 const color = ref(null)
 const storage = ref(null)
+
+watchEffect(() => {
+  const colors = props.product?.options?.colors
+  const storages = props.product?.options?.storages
+
+  if (colors?.length === 1) color.value = colors[0].code
+  if (storages?.length === 1) storage.value = storages[0].code
+})
+
+function addToCart() {
+  cartStore.addItem(props.product.id, color.value, storage.value)
+}
 </script>
+
 <style scoped lang="scss">
 @use '../../style/mixins.scss' as *;
 .details {
@@ -123,6 +144,9 @@ const storage = ref(null)
         color: black;
       }
     }
+  }
+  &-btn-cart {
+    @include d-flex(row, center, center, 12px);
   }
 }
 </style>
