@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import DeviceList from '@/components/deviceList.vue'
+import DeviceList from '@/components/devicePage/deviceList.vue'
 import { useDevices } from '@/composables/useDevices.js'
 import loadingImg from '@/assets/loading.gif'
 

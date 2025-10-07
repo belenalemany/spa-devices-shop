@@ -13,7 +13,7 @@ defineProps({
 })
 </script>
 <style scoped lang="scss">
-@use '../style/mixins.scss' as *;
+@use '../../style/mixins.scss' as *;
 .devices-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));

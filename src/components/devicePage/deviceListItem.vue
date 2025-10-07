@@ -21,7 +21,7 @@ defineProps({
 })
 </script>
 <style scoped lang="scss">
-@use '../style/mixins.scss' as *;
+@use '../../style/mixins.scss' as *;
 .device-card {
   @include d-flex(column, initial, initial, 12px);
   padding: 1.5vh;

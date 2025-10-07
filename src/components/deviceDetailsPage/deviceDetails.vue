@@ -1,12 +1,6 @@
 <template>
   <main>
-    <div v-if="loading" class="center">
-      <img :src="loadingImg" alt="Loading" class="loading" />
-    </div>
-    <div v-else-if="error" class="center">
-      <p>{{ error }}</p>
-    </div>
-    <div v-else class="details">
+    <div class="details">
       <section>
         <img :src="product.imgUrl" :alt="product.model" />
         <h3 class="details-price" v-if="product.price">
@@ -30,12 +24,7 @@
         <div class="details-options">
           <span>Color:</span>
           <select v-model="color">
-            <option
-              v-for="color in product?.options?.colors"
-              :key="color.code"
-              :value="color"
-              :placeholder="PLACEHOLDER_OPTION"
-            >
+            <option v-for="color in product?.options?.colors" :key="color.code" :value="color">
               {{ color.name }}
             </option>
           </select>
@@ -58,12 +47,10 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import loadingImg from '@/assets/loading.gif'
-import { useDevicesDetails } from '@/composables/useDeviceDetails.js'
 import { DEFAULT_CURRENCY, DEFAULT_WEIGHT, UNKNOWN } from '@/utils/constants.js'
-const props = defineProps({
-  id: {
-    type: String,
+defineProps({
+  product: {
+    type: Object,
     required: true,
   },
 })
@@ -82,13 +69,12 @@ const fields = [
 ]
 const color = ref(null)
 const storage = ref(null)
-const { product, loading, error } = useDevicesDetails(props.id)
 </script>
 <style scoped lang="scss">
-@use '../style/mixins.scss' as *;
+@use '../../style/mixins.scss' as *;
 .details {
   @include d-flex(row, center, center, 10%);
-  width: 100%;
+  width: 100vw;
   height: 100%;
 
   td {

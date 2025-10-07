@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import devicePage from '@/pages/devicePage.vue'
-import deviceDetail from '@/pages/deviceDetail.vue'
+import deviceDetail from '@/pages/deviceDetailsPage.vue'
 
 const routes = [
   { path: '/', name: 'device', component: devicePage },
