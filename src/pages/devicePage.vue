@@ -1,7 +1,7 @@
 <template>
   <main>
     <div v-if="loading" class="center">
-      <img :src="loadingImg" alt="Loading" class="loading" />
+      <img :src="loadingImg" alt="Loading" class="loading" data-testid="loading-img" />
     </div>
     <div v-else-if="error" class="center">
       <p>{{ error }}</p>
@@ -13,6 +13,7 @@
           placeholder="Search devices..."
           class="device-page-search"
           @input="filterDevices($event.target.value)"
+          data-testid="search-input"
         />
       </div>
       <DeviceList :devices="devices" />

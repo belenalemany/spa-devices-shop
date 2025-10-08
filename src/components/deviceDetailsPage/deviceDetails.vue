@@ -31,7 +31,7 @@
         </div>
         <div class="details-options">
           <span>Storage:</span>
-          <select v-model="storage">
+          <select v-model="storage" data-testid="select-storage">
             <option
               v-for="storage in product?.options?.storages"
               :key="storage.code"
@@ -42,7 +42,11 @@
           </select>
         </div>
         <div class="details-btn-cart">
-          <button :disabled="!color || !storage || cartStore.loadingCart" @click="addToCart()">
+          <button
+            :disabled="!color || !storage || cartStore.loadingCart"
+            @click="addToCart()"
+            data-testid="add-cart-btn"
+          >
             {{ cartStore.loadingCart ? 'Added...' : 'Add to cart' }}
           </button>
         </div>
