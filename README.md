@@ -1,44 +1,36 @@
-# spa-devices-shop
+# 📱 SPA - Product shop
 
-This template should help get you started developing with Vue 3 in Vite.
+Este proyecto es una SPA desarrollada con Vue 3 + Vite, que consume un API de productos, mostrando un listado, su detalle, y un contador de productos añadidos al carrito de compras.
 
-## Recommended IDE Setup
+## 📜 Scripts disponibles
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Ejecuta los siguientes comandos en el terminal:
 
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm install         # Instala las dependencias
+npm run start       # Ejecuta la aplicación en modo desarrollo
+npm run test        # Ejecuta los tests
+npm run lint        # Lint del código
 ```
 
-### Compile and Hot-Reload for Development
+## 🚀 Tecnologías utilizadas
 
-```sh
-npm run dev
-```
+- Vue 3 + Vite
+- Vue Router
+- Fetch
+- VueUse (useLocalStorage)
+- Pinia
+- ESLint + Prettier
+- Testing Library + Vitest
 
-### Compile and Minify for Production
+## 🛠️ Estrategia de cache
 
-```sh
-npm run build
-```
+- 📦 Se ha decidido usar `VueUse (useLocalStorage)` para cachear productos y detalles con expiración de 1h y aislar la lógica en `fetchWithCache`. Trascurrido este tiempo (que se comprueba comparando el timestamp) se vuelve a hacer las llamadas necesarias a la API.
+- 🍍 Para manejar el contador del carrito que está visible en todas las páginas, se ha optado por `Pinia` ya que permite manejar un estado global compartido. Además, se hidrata desde la cache cuando arranca la aplicación en `App.vue`
 
-### Lint with [ESLint](https://eslint.org/)
+## 📝 Funcionalidades
 
-```sh
-npm run lint
-```
+- 📑 Se han creado una página para cada vista (listado de productos y detalle del producto), y algunos componentes que ayudan a hacer que la lógica esté más encapsulada y sea más fácil de mantener y pueda reutilizarse en un futuro.
+- ⚙️ Se ha aislado la lógica de llamadas a la API en composables + services lo que permite cambiar de fetch a cualquier otra tecnologia sin tener que hacer un gran refactor.
+- 🎨 Para el diseño de la aplicación se ha utilizado SCSS así como mixins para definir los estilos globales.
+- 🧪 Se ha hecho a modo representativo tests unitarios que comprueba que se renderice el contenido de los detalles del dispositivo y también tests de integración para la llamada de obtener el listado de productos.
