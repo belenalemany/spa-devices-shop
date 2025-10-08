@@ -1,13 +1,13 @@
 <template>
   <main>
     <div class="details">
-      <section>
+      <section class="details-image">
         <img :src="product.imgUrl" :alt="product.model" />
         <h3 class="details-price" v-if="product.price">
           {{ product.price }} {{ DEFAULT_CURRENCY }}
         </h3>
       </section>
-      <section>
+      <section class="details-info">
         <table>
           <tr v-for="field in fields" :key="field.key">
             <td class="spec-label">{{ field.label }}</td>
@@ -97,6 +97,8 @@ function addToCart() {
   @include d-flex(row, center, center, 10%);
   width: 100vw;
   height: 100%;
+  flex-wrap: wrap;
+  padding-top: 10px;
 
   td {
     padding: 8px;
@@ -147,6 +149,35 @@ function addToCart() {
   }
   &-btn-cart {
     @include d-flex(row, center, center, 12px);
+  }
+  @include respond(phone) {
+    @include d-flex(column, flex-start, center, 1.5rem);
+    height: auto;
+    padding-top: 35rem;
+
+    &-image {
+      width: 90%;
+      height: auto;
+      text-align: center;
+      margin-top: 0;
+
+      img {
+        height: auto;
+        max-width: 100%;
+      }
+    }
+
+    &-info {
+      width: 95%;
+      padding: 1rem 0.5rem;
+    }
+    &-btn-cart {
+      margin-bottom: 2rem;
+      & button {
+        width: 50%;
+        height: 40px;
+      }
+    }
   }
 }
 </style>
